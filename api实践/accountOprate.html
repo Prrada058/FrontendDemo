@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+</head>
+<body>
+
+<h2>登录</h2>
+
+<form id="loginForm">
+  <input type="text" id="accName" name="accName" placeholder="请输入用户名" required>
+  <br><br>
+  <input type="password" id="accPassword" name="accPassword" placeholder="请输入密码" required>
+  <br><br>
+  <input type="submit" value="登录">
+</form>
+
+<script>
+  // 获取表单元素
+  const form = document.getElementById('loginForm');
+
+  // 监听表单提交事件
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();  // 阻止默认表单提交行为
+
+    const accName = document.getElementById('accName').value;
+    const accPassword = document.getElementById('accPassword').value;
+
+    // 使用 fetch 向后端发送请求
+    fetch('http://localhost:8080/signin', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        accName: accName,
+        accPassword: accPassword
+      }),
+    })
+            .then(response => response.json())  // 假设后端返回的是 JSON 格式
+            .then(data => {
+              if (data.token) {  // 假设后端返回的数据中包含 token
+                // 将 token 存储在 localStorage 中
+                localStorage.setItem('token', data.token);
+
+                // 登录成功后跳转到 /account
+                window.location.href = 'http://localhost:8080/account';
+              } else {
+                alert('登录失败：' + data.message);
+              }
+            })
+            .catch(error => {
+              console.error('Error:', error);
+              alert('登录请求失败');
+            });
+  });
+</script>
+
+</body>
+</html>

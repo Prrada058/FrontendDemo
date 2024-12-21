@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+/*元素选择器*/
+h2{
+    color: red;
+    background-color: #b4a5a5;
+}
+/*类选择器*/
+.highlight{
+    background-color: yellow;
+}
+/*id选择器*/
+#disilei {
+font-size: 30px;
+}
+/*通用选择器*/
+*{
+    font-family: "kaiti";
+    font-weight: bold;
+}
+/*子元素选择器*/
+.father > .son{
+    color: #4e0457;
+}
+/*后代选择器*/
+.father p{
+    color: #95ff00;
+}
+/*相邻元素选择器*/
+h3 + p{
+    color: red;
+}
+/*伪类选择器*/
+#eee:hover{
+    background-color: yellow;
+    font-size: 20px;
+}
+
+    </style>
+
+</head>
+
+<body>
+
+<h1>css选择器</h1>
+<h2>元素选择器</h2>
+<h3>类选择器</h3>
+<h3 class="highlight">类选择器</h3>
+<h4 id="disilei">id选择器</h4>
+
+<div class="father">
+    <p class="son">子元素选择器</p>
+    <div>
+        <p class="grandson">后代选择器</p>
+        <div>
+            <p>后代选择器</p>
+        </div>
+    </div>
+</div>
+
+<p>相邻元素</p>
+
+<h3>相邻元素</h3>
+
+<p>相邻元素</p>
+
+
+<h3 id="eee">伪类选择器</h3>
+
+</body>
+</html>
