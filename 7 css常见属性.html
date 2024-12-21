@@ -3,8 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        .block{
+            background-color: #d200ff;
+            width: 150px;
+            height: 80px;
+        }
+        .inline{
+            background-color: #157024;
+        }
+        .inline-block{
+            width: 200px;
+            height: 50px;
+        }
+
+    </style>
 </head>
 <body>
 
+<h1 style="font: bolder 50px 'kaiti'">font复合属性</h1>
+<p style="line-height: 40px">行高设置行高设置行高设置行高设置行高设置行高设置行高设置行高设置行高设置行高设置行高设置行高设置行高设置行高设置行高设置行高设置行高设置行高设置行高设置行高设置行高设置行高设置行高设置行高设置行高设置行高设置行高设置行高设置</p>
+<div class="block">块级元素</div>
+<span class="inline">行内元素</span>
+<img src="https://img1.baidu.com/it/u=3042408821,1044429032&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=313" class="inline-block">
+<img src="https://img1.baidu.com/it/u=3042408821,1044429032&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=313" class="inline-block">
+<h1>display转为行内块元素</h1>
+<div style="display: inline; background-color: #d200ff">div转正行内块测试</div>
+<div style="display: inline-block; background-color: #d200ff; height: 30px">div转正行内块测试</div>
+<div style="display: inline-block; background-color: #d200ff">div转正行内块测试</div>
 </body>
 </html>
