@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bike List</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 5px;
+        }
+
+        th, td {
+            border: 1px solid #000;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .modal {
+            display: none; /* 默认隐藏 */
+            position: fixed;
+            z-index: 1; /* 确保它在最上层 */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* 半透明背景 */
+        }
+
+        .modal-content {
+            position: relative;
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 5px;
+            width: 40%;
+        }
+    </style>
+</head>
+<body onload="query()">
+
+<h1>Bike List</h1>
+<button onclick="showModal()">新增</button>
+
+<table id="bikeTable">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Model</th>
+        <th>Manufacturer</th>
+        <th>Type</th>
+        <th>Method</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!--插入数据位置-->
+    </tbody>
+</table>
+<div id="modal" class="modal" onclick="closeModal(event)">
+    <div class="modal-content">
+        <div>
+            <label>Model</label><br>
+            <input type="text" name="bikeModel"><br>
+            <label>Manufacturer</label><br>
+            <input type="text" name="bikeManufacturer"><br>
+            <label>Type</label><br>
+            <input type="text" name="bikeType"><br>
+            <button onclick="submitForm(this)">Submit</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function query() {
+        fetch('http://localhost:8080/bike', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+
+            .then(response => response.json()) // 解析 JSON 数据
+
+            .then(data => {
+                const tableBody = document.querySelector('#bikeTable tbody');
+                data.forEach(bike => {
+                    const row = document.createElement('tr');
+
+                    // 创建每一列数据
+                    const idCell = document.createElement('td');
+                    idCell.textContent = bike.bikeId;
+                    const modelCell = document.createElement('td');
+                    modelCell.textContent = bike.bikeModel;
+                    const manufacturerCell = document.createElement('td');
+                    manufacturerCell.textContent = bike.bikeManufacturer;
+                    const typeCell = document.createElement('td');
+                    typeCell.textContent = bike.bikeType;
+                    const methodCell = document.createElement('td');
+                    methodCell.innerHTML = "<button onclick='editRow(this)'>edit</button><button onclick='deleteRow(this)'>delete</button>";
+
+
+                    // 将列数据添加到行中
+                    row.appendChild(idCell);
+                    row.appendChild(modelCell);
+                    row.appendChild(manufacturerCell);
+                    row.appendChild(typeCell);
+                    row.appendChild(methodCell);
+
+                    // 将行添加到表格中
+                    tableBody.appendChild(row);
+                });
+            })
+    }
+
+    function showModal() {
+        const modal = document.getElementById('modal');
+        modal.style.display = "block";
+    }
+
+    function closeModal(event) {
+        const modal = document.getElementById('modal');
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    function closeModalAnyway() {
+        const modal = document.getElementById('modal');
+        modal.style.display = "none";
+    }
+
+    function editRow(button) {
+        let wholeRow = button.parentNode.parentNode;
+    }
+
+    function deleteRow(button) {
+        let wholeRow = button.parentNode.parentNode;
+        let id = wholeRow.cells[0].textContent;
+        // 要发送的整数
+        let data = {"id": id}
+
+// 使用 fetch 发送 POST 请求
+        fetch('http://localhost:8080/bike/delete', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => response.text())
+            .then(data => {
+                console.log('Server Response:', data);
+                alert('后端返回: ' + data);
+                location.reload();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('请求失败');
+                location.reload();
+            });
+
+    }
+
+    function submitForm(button) {
+        let divBox = button.parentNode;
+        let model = divBox.querySelector('input[name="bikeModel"]').value;
+        let manufacturer = divBox.querySelector('input[name="bikeManufacturer"]').value;
+        let type = divBox.querySelector('input[name="bikeType"]').value;
+        let data = {
+            "bikeModel": model,
+            "bikeManufacturer": manufacturer,
+            "bikeType": type
+        };
+        fetch('http://localhost:8080/bike/add', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text(); // 解析纯文本
+            })
+            .then(data => {
+                console.log('Server Response:', data);
+                // 显示返回消息
+                alert(data); // 弹窗显示结果
+                location.reload();
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+                alert('提交失败，请稍后再试');
+                location.reload();
+            });
+        // // TODO 异常处理
+    }
+</script>
+
+</body>
+</html>
