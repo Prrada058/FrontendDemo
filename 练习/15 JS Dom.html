@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="1" onclick="f1()">box1</div>
+<div class="1" onclick="f2()">box2</div>
+<div>box3</div>
+
+
+
+<script>
+  console.log(document.getElementById("1"));
+  console.log(document.getElementsByClassName("1")[0]);
+  console.log(document.getElementsByTagName("div")[2]);
+
+
+  function f1(){
+    document.getElementById("1").innerHTML='<a href="#">aee</a>';
+  }
+
+  function f2(){
+    document.getElementsByClassName("1").innerText="hello world";
+  }
+
+  document.getElementById("1").style.color="red";
+
+</script>
+</body>
+</html>
