@@ -2,39 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>居中示例</title>
+    <style>
+        /* 移除默认的边距 */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%; /* 确保父级容器有高度 */
+        }
+
+        .container {
+            display: flex;
+            justify-content: center; /* 水平居中 */
+            align-items: center;    /* 垂直居中 */
+            height: 100vh;          /* 视口高度 */
+            background-color: #ebebeb;
+        }
+
+        .box {
+            width: 200px;
+            height: 100px;
+            background-color: #007BFF;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
 </head>
 <body>
-
-
-
-<hr>
-
-<form method="post" action="http://localhost:8080/signup">
-    <label>注册</label>
-    <br>
-    <input type="text" name="accName" placeholder="请输入用户名">
-    <br><br>
-    <input type="password" name="accPassword" placeholder="请输入密码">
-    <br><br>
-    <input type="text" name="accEmail" placeholder="请输入Email">
-    <br><br>
-    <input type="submit">
-
-</form>
-<hr>
-<form method="post" action="http://localhost:8080/account/changePassword">
-    <label>修改密码</label>
-    <br>
-    <input type="text" name="accName" placeholder="请输入用户名">
-    <br><br>
-    <input type="password" name="passwordBefore" placeholder="请输入旧密码">
-    <br><br>
-    <input type="password" name="accPassword" placeholder="请输入新密码">
-    <br><br>
-    <input type="submit">
-
-
-</form>
+<div class="container">
+    <div class="box">我是居中的内容</div>
+</div>
 </body>
 </html>

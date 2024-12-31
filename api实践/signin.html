@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Google+Sans&display=swap" rel="stylesheet">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* 水平居中 */
+            align-items: center; /* 垂直居中 */
+            height: 100vh; /* 父容器高度为视口高度 */
+            background-color: #f1f4f8;
+        }
+
+        input[type="text"] {
+            border: none;
+            background: none;
+            outline: none;
+            width: 464px;
+            height: 28px;
+            padding: 13px 15px 13px 15px;
+            font-size: 17px;
+            color: #000000;
+        }
+
+        input[type="text"]::placeholder {
+            color: #464646;
+        }
+
+        a {
+            color: #2656c9;
+            font-family: "PingFang SC";
+            font-weight: 500;
+            text-decoration: none;
+            letter-spacing: 0.015625rem;
+            font-size: 14px;
+        }
+
+        #loginBlock {
+            background-color: white;
+            width: 1040px;
+            height: 258.5px;
+            padding: 108px 36px 36px 36px;
+            margin: 0 200px 0 200px;
+            border-radius: 28px;
+            display: flex;
+            flex-wrap: wrap;
+
+
+        }
+
+        #left {
+            /*background-color: #aab7c9;*/
+            width: 496px;
+            height: 252px;
+            padding-right: 24px;
+            margin-top: -72px;
+
+        }
+
+        #left-1 {
+            /*background-color: #eaedef;*/
+            width: 496px;
+            height: 48px;
+
+        }
+
+        #left-2 {
+            /*background-color: #eaedef;*/
+            width: 496px;
+            height: 108px;
+        }
+
+        #left-2-1 {
+            /*background-color: #a5acb2;*/
+            width: 496px;
+            height: 44px;
+            margin-top: 24px;
+            font-size: 36px;
+            color: #1f1f1f;
+            font-family: "PingFang SC";
+            display: flex;
+            align-items: center;
+
+        }
+
+        #left-2-2 {
+            /*background-color: #aca3c3;*/
+            width: 496px;
+            height: 24px;
+            margin-top: 16px;
+
+        }
+
+        #right {
+            /*background-color: #e3e3c2;*/
+            width: 496px;
+            height: 180px;
+            padding-left: 24px;
+        }
+
+        #right-1 {
+            /*background-color: #878777;*/
+            height: 96.5px;
+            width: 496px;
+        }
+
+        #right-1-1 {
+            /*background-color: #ffffb8;*/
+            width: 496px;
+            height: 56px;
+            padding-top: 8px;
+
+        }
+
+        #input-1 {
+            /*background-color: #ffffff;*/
+            width: 496px;
+            height: 55px;
+            border-radius: 4px;
+            border-style: solid;
+            border-width: 1px;
+            border-color: #babbba;
+
+
+        }
+
+        #right-1-2 {
+            /*background-color: #ffffff;*/
+            width: 496px;
+            height: 20.5px;
+            padding: 9px 0 3px 0;
+            font-size: 14px;
+            color: #2656c9;
+            font-family: "PingFang SC";
+            font-weight: 500;
+
+        }
+
+        #right-2 {
+            /*background-color: #5ad393;*/
+            height: 52px;
+            width: 496px;
+            margin-top: 32px;
+            font-size: 14px;
+        }
+
+        #right-2-1 {
+            width: 496px;
+            height: 40px;
+            padding: 9px 0 3px 0;
+        }
+
+        #bottom {
+            /*background-color: #e491b3;*/
+            width: 1056px;
+            height: 52px;
+            margin: 32px 0 -6px -16px;
+            display: flex;
+            justify-content: right;
+            align-items: center;
+
+
+        }
+
+        #bottom-1 {
+            /*background-color: #af4d4d;*/
+            width: 88px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: -16px;
+
+        }
+
+        #bottom-2{
+            background-color: #2656c9;
+            width: 90px;
+            height: 40px;
+            margin-left: 40px;
+            /*padding: 0 24px 0 24px;*/
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: white;
+            border-radius: 20px;
+
+        }
+
+        #details {
+            /*background-color: #ccbdbd;*/
+            width: 1080px;
+            height: 64px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #footer-left {
+            width: 200px;
+            height: 48px;
+            /*background-color: #f1f4f8;*/
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            margin: 0 -12px 0 -12px;
+        }
+
+        #footer-left-button {
+            /*background-color: #f5c0e5;*/
+            width: 200px;
+            height: 32px;
+            border-radius: 8px;
+
+        }
+
+        #footer-left-button-language {
+            width: 140px;
+            height: 32px;
+            margin-left: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        #footer-right {
+            width: 172.711px;
+            height: 64px;
+            /*background-color: #b58282;*/
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            margin: 0 -12px 0 -12px
+
+        }
+
+        #footer-right-1 {
+            /*background-color: #9cb1c7;*/
+            width: 24.203px;
+            height: 16px;
+            padding: 8px 12px 8px 12px;
+            border-radius: 8px;
+        }
+
+        #footer-right-2 {
+            /*background-color: #9cb1c7;*/
+            width: 36.305px;
+            height: 16px;
+            padding: 8px 12px 8px 12px;
+            border-radius: 8px;
+        }
+
+        #footer-right-3 {
+            /*background-color: #9cb1c7;*/
+            width: 24.203px;
+            height: 16px;
+            padding: 8px 12px 8px 12px;
+            border-radius: 8px;
+        }
+
+
+    </style>
+</head>
+<body onload="loginWithToken()">
+<div class="container">
+    <div id="loginBlock">
+        <div id="left">
+            <div id="left-1">
+                <svg width="48" height="48" viewBox="0 0 40 48" aria-hidden="true"
+                     jsname="jjf7Ff">
+                    <path fill="#4285F4"
+                          d="M39.2 24.45c0-1.55-.16-3.04-.43-4.45H20v8h10.73c-.45 2.53-1.86 4.68-4 6.11v5.05h6.5c3.78-3.48 5.97-8.62 5.97-14.71z"></path>
+                    <path fill="#34A853"
+                          d="M20 44c5.4 0 9.92-1.79 13.24-4.84l-6.5-5.05C24.95 35.3 22.67 36 20 36c-5.19 0-9.59-3.51-11.15-8.23h-6.7v5.2C5.43 39.51 12.18 44 20 44z"></path>
+                    <path fill="#FABB05"
+                          d="M8.85 27.77c-.4-1.19-.62-2.46-.62-3.77s.22-2.58.62-3.77v-5.2h-6.7C.78 17.73 0 20.77 0 24s.78 6.27 2.14 8.97l6.71-5.2z"></path>
+                    <path fill="#E94235"
+                          d="M20 12c2.93 0 5.55 1.01 7.62 2.98l5.76-5.76C29.92 5.98 25.39 4 20 4 12.18 4 5.43 8.49 2.14 15.03l6.7 5.2C10.41 15.51 14.81 12 20 12z"></path>
+                </svg>
+            </div>
+            <div id="left-2">
+
+                <div id="left-2-1">
+                    登录
+                </div>
+                <div id="left-2-2">
+                    使用您的 Google 账号
+                </div>
+            </div>
+        </div>
+        <div id="right">
+            <div id="right-1">
+                <div id="right-1-1">
+                    <div id="input-1">
+                        <input type="text" id="place" placeholder="电子邮件地址或电话号码">
+                    </div>
+
+                </div>
+                <div id="right-1-2">
+                    <a href="#">忘记了电子邮件地址？</a>
+
+                </div>
+            </div>
+
+            <div id="right-2">
+                <div id="right-2-1">
+                    您用的不是自己的电脑？请使用访客模式无痕登录。
+                    <a href="#">详细了解如何使用访客模式</a>
+                </div>
+            </div>
+
+        </div>
+        <div id="bottom">
+            <div id="bottom-1">
+                <a href="#">创建账号</a>
+            </div>
+            <div id="bottom-2">
+                下一步
+
+            </div>
+        </div>
+    </div>
+
+    <div id="details">
+        <div id="footer-left">
+            <div id="footer-left-button">
+                <div id="footer-left-button-language">
+                    简体中文
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="footer-right">
+            <div id="footer-right-1">
+                帮助
+            </div>
+            <div id="footer-right-2">
+                隐私权
+            </div>
+            <div id="footer-right-3">
+                条款
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!--<script>-->
+
+<!--    function loginWithPassword(button) {-->
+<!--        let loginForm = button.parentNode;-->
+<!--        let accName = loginForm.accName.value;-->
+<!--        let accPassword = loginForm.accPassword.value;-->
+<!--        let data = {-->
+<!--            "accName": accName,-->
+<!--            "accPassword": accPassword-->
+<!--        };-->
+<!--        fetch("http://localhost:8080/signin", {-->
+<!--            method: "POST",-->
+<!--            headers: {-->
+<!--                "Content-Type": "application/json"-->
+<!--            },-->
+<!--            body: JSON.stringify(data)-->
+<!--        })-->
+<!--            .then(response => {-->
+<!--                if (!response.ok) {-->
+<!--                    return response.text().then(errorMessage => {-->
+<!--                        throw new Error(errorMessage); // 带上返回的文本作为错误消息-->
+<!--                    });-->
+<!--                }-->
+<!--                return response.text(); // 如果响应成功，继续处理文本-->
+<!--            })-->
+<!--            .then(data => {-->
+<!--                console.log("收到 token：" + data);-->
+<!--                localStorage.setItem('accountToken', data);-->
+<!--                window.location.href = "/accountList.html";-->
+<!--            })-->
+<!--            .catch(error => {-->
+<!--                alert(error);-->
+<!--            });-->
+
+
+<!--    }-->
+
+<!--    function loginWithToken() {-->
+<!--        let token = localStorage.getItem('accountToken');-->
+<!--        if (!token) {-->
+<!--            return;-->
+<!--        }-->
+<!--        let data = {-->
+<!--            "accToken": token-->
+<!--        };-->
+<!--        fetch("http://localhost:8080/signin", {-->
+<!--            method: "POST",-->
+<!--            headers: {-->
+<!--                "Content-Type": "application/json"-->
+<!--            },-->
+<!--            body: JSON.stringify(data)-->
+<!--        })-->
+<!--            .then(response => {-->
+<!--                if (!response.ok) {-->
+<!--                    return response.text().then(errorMessage => {-->
+<!--                        throw new Error(errorMessage);-->
+<!--                    });-->
+<!--                }-->
+<!--                return response.text();-->
+<!--            })-->
+<!--            .then(data => {-->
+<!--                console.log(data);-->
+<!--                alert(data);-->
+<!--                window.location.href = `http://localhost:8080/account/list?token=${token}`;-->
+
+<!--            })-->
+<!--            .catch(error => {-->
+<!--                alert(error.message);-->
+<!--            });-->
+<!--    }-->
+<!--</script>-->
+
+</body>
+</html>
