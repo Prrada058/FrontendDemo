@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body onload="loginWithToken()">
+
+<h2>登录</h2>
+
+<form id="loginForm">
+    <input type="text" name="accName" placeholder="请输入用户名" required>
+    <br><br>
+    <input type="password" name="accPassword" placeholder="请输入密码" required>
+    <br><br>
+    <button type="button" onclick="loginWithPassword(this)">登录</button>
+</form>
+
+<script>
+
+    function loginWithPassword(button) {
+        let loginForm = button.parentNode;
+        let accName = loginForm.accName.value;
+        let accPassword = loginForm.accPassword.value;
+        let data = {
+            "accName": accName,
+            "accPassword": accPassword
+        };
+        fetch("http://localhost:8080/signin", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => {
+                if (!response.ok) {
+                    return response.text().then(errorMessage => {
+                        throw new Error(errorMessage); // 带上返回的文本作为错误消息
+                    });
+                }
+                return response.text(); // 如果响应成功，继续处理文本
+            })
+            .then(data => {
+                console.log("收到 token：" + data);
+                localStorage.setItem('accountToken', data);
+                window.location.href = "/accountList.html";
+            })
+            .catch(error => {
+                alert(error);
+            });
+
+
+    }
+
+    function loginWithToken() {
+        let token = localStorage.getItem('accountToken');
+        if (!token) {
+            return;
+        }
+        let data = {
+            "accToken": token
+        };
+        fetch("http://localhost:8080/signin", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => {
+                if (!response.ok) {
+                    return response.text().then(errorMessage => {
+                        throw new Error(errorMessage);
+                    });
+                }
+                return response.text();
+            })
+            .then(data => {
+                console.log(data);
+                alert(data);
+                window.location.href = "/accountList.html";
+
+            })
+            .catch(error => {
+                alert(error.message);
+            });
+    }
+</script>
+
+</body>
+</html>
