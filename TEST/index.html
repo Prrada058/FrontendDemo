@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>侧边导航栏示例</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <!-- 侧边导航栏 -->
+    <div class="sidebar">
+        <h2>导航菜单</h2>
+        <ul>
+            <li><a href="#" data-page="home">首页</a></li>
+            <li><a href="#" data-page="about">关于我们</a></li>
+            <li><a href="#" data-page="services">服务</a></li>
+            <li><a href="#" data-page="contact">联系我们</a></li>
+        </ul>
+    </div>
+
+    <!-- 主内容区 -->
+    <div class="content">
+        <div id="home" class="page active">
+            <h1>欢迎来到首页</h1>
+            <p>这里是主页内容。</p>
+        </div>
+        <div id="about" class="page">
+            <h1>关于我们</h1>
+            <p>我们是一家致力于创新的公司。</p>
+        </div>
+        <div id="services" class="page">
+            <h1>我们的服务</h1>
+            <p>我们提供多种服务满足您的需求。</p>
+        </div>
+        <div id="contact" class="page">
+            <h1>联系我们</h1>
+            <p>联系方式：email@example.com</p>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
